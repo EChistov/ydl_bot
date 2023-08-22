@@ -1,5 +1,5 @@
 pyTelegramBotAPI
-validators
+validators~=0.20.0
 yt-dlp
-
-
+SQLAlchemy
+pydantic

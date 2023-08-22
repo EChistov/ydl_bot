@@ -1,0 +1,20 @@
+{
+    "main": {
+        "telegram_token": "",
+        "super_admin_list": [],
+        "lang": "auto",
+        "mp3_dir": "../mp3"
+    },
+    "advanced": {
+        "use_bitrate": [
+            256, 128, 112, 96, 80, 64, 56, 48, 40, 32
+        ],
+        "max_attempt": 3,
+        "send_timeout": 600,
+        "auto_delete_files": true,
+        "msg_thread_count": 3,
+        "history_entries_on_page": 10,
+        "users_on_page": 5
+    }
+
+}

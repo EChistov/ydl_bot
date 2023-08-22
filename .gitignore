@@ -1,3 +1,7 @@
 venv
 .idea
 .DS_Store
+database.db
+.env
+__pycache__/
+MP3/
