@@ -80,6 +80,7 @@ def size_analyse_thread(file_name: str, duration: int, bitrate: int, message: Me
                     actual_size = os.path.getsize(file_name)
                 except Exception as e:
                     log.error("Can't get file size")
+                    log.exception(e)
                 else:
                     p = actual_size * 100 // predicted_size
                     if 0 <= p <= 100:
@@ -115,15 +116,16 @@ def get_download_progress_hook(bot_obj: TeleBot, message: Message, msg_queue: qu
 
         nonlocal previous_call
         if ydl_status['status'] == 'downloading':
-
             log_debug(f'bot_msg.date {message.date}, bot_msg.edit_date {message.edit_date}')
             # Suppress frequent API calls for preventing DDoS
             now = time.time()
             if now - previous_call > 1.0:
                 previous_call = now
+                msg_message = (BOT_MSG[lang(message)]['downloading_file'] +
+                               f" {str(ydl_status['filename']).lstrip(cfg.main.mp3_dir + os.path.sep)}\n")
+                status_bar = draw_progress_bar(ydl_percent_str_to_int(ydl_status['_percent_str']))
                 # Send info to MSG_Thread
-                message_to_edit = (f"{str(ydl_status['filename']).lstrip(cfg.main.mp3_dir + os.path.sep)}\n"
-                                   f"{draw_progress_bar(ydl_percent_str_to_int(ydl_status['_percent_str']))}\n")
+                message_to_edit = msg_message + status_bar
                 msg_queue.put(MSGMessage(command=MSGCommand.Edit, message_object=message, message_str=message_to_edit,
                                          with_retry=False), block=False)
         if ydl_status['status'] == 'finished':

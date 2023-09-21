@@ -1,3 +1,7 @@
+<div align="center">
+<img src="https://raw.githubusercontent.com/EChistov/ydl_bot/main/.github/logo-editor-cropped.svg" alt="ydl_bot_logo" style="width:200px;"/>
+</div>
+
 # YDL_BOT
 
 ## The Telegram Bot which can make an mp3-file from a YouTube link
@@ -6,7 +10,7 @@
 
 ## Key features
 
-- Download and convert any YouTube video to mp3, and possibly other services (support connected to yt_dlp and not
+- Download and convert any YouTube video to mp3, and possibly other services (support connected to [yt-dlp](https://github.com/yt-dlp/yt-dlp) and not
   tested).
 - Based on the duration of the source video, the bot sets up suitable bitrate and sends the file via a 50 MB Telegram API default
   window (a version of the bot with Docker-composed self-hosted Telegram API without these file sending restrictions could be available
@@ -30,18 +34,20 @@ see the admin keyboard, something has gone wrong with your privileges.
 ## Installation
 
 The installation process requires `docker`. You can run the app as-is, using Python 3.18 and above, but you should also 
-install `ffmpeg`.
+install `ffmpeg`. 
+
+*Notice: The bot is intended for a **small number of users**, file conversion using ffmpeg is very resource-intensive.*
 
 Usually, the process contains 4 steps:
 
 - Clone and build the image.
-- Get a Telegram API key using BotFather (https://core.telegram.org/bots/features#botfather).
+- Get a Telegram API key using [BotFather](https://t.me/botfather) (https://core.telegram.org/bots/features#botfather).
 - Run the bot in init mode to get your Telegram user ID.
 - Run the bot in normal mode.
 
 ### Get an API key
 
-- Open Telegram, find `@BotFather` bot.
+- Open Telegram, find [`@BotFather`](https://t.me/botfather) bot. 
 - Follow the instructions to set your bot name and receive an API key.
 
 ### Clone and build the Docker image
@@ -105,8 +111,6 @@ deleted from the bot interface; they are the first admins who have access to the
 
 ## Update
 
----
-
 Keep the bot up to date; sometimes something goes wrong with the YouTube API. Usually, a new version
 of [yt_dlp](https://github.com/yt-dlp/yt-dlp) solves this problem. The version of yt_dlp is not fixed in
 requirements.txt.
@@ -114,8 +118,6 @@ requirements.txt.
 Just fetch new changes from the repo and remake the Docker container.
 
 ## User Privileges
-
----
 
 The Bot has 4 privilege levels:
 
